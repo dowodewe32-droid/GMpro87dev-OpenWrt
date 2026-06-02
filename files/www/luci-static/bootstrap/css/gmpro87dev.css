@@ -1,0 +1,95 @@
+/* GMpro87devWRT Custom Theme */
+:root {
+  --gmpro-primary: #00bfff;
+  --gmpro-secondary: #1a1a2e;
+  --gmpro-accent: #e94560;
+  --gmpro-dark: #0f0f23;
+}
+
+/* Custom header logo text */
+.brand {
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+}
+
+/* Header customization */
+header.bg-dark {
+  background: linear-gradient(135deg, var(--gmpro-secondary) 0%, var(--gmpro-dark) 100%) !important;
+  border-bottom: 2px solid var(--gmpro-primary) !important;
+}
+
+/* GMpro87devWRT logo text replacement */
+.header-logo {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo .logo {
+  display: none;
+}
+
+.header-logo::before {
+  content: "GMpro87devWRT";
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--gmpro-primary);
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+}
+
+/* Status page branding */
+.footer .alert-message a {
+  color: var(--gmpro-primary) !important;
+}
+
+/* Custom table styling */
+.table tr:hover td {
+  background-color: rgba(0, 191, 255, 0.05) !important;
+}
+
+/* Primary button styling */
+.btn-primary {
+  background: linear-gradient(135deg, var(--gmpro-primary), #0099cc) !important;
+  border-color: var(--gmpro-primary) !important;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #0099cc, var(--gmpro-primary)) !important;
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
+}
+
+/* Notification badges */
+.badge-danger {
+  background: var(--gmpro-accent) !important;
+}
+
+/* Navigation sidebar */
+.sidebar {
+  background: var(--gmpro-dark) !important;
+}
+
+.sidebar .nav-item > a:hover {
+  background: rgba(0, 191, 255, 0.1) !important;
+  border-left: 3px solid var(--gmpro-primary);
+}
+
+/* Login page */
+.login-page {
+  background: linear-gradient(135deg, var(--gmpro-dark), var(--gmpro-secondary)) !important;
+}
+
+.login-page .card {
+  border: 1px solid var(--gmpro-primary) !important;
+  box-shadow: 0 0 30px rgba(0, 191, 255, 0.1);
+}
+
+.login-page .card-title::before {
+  content: "GMpro87devWRT";
+  display: block;
+  font-size: 24px;
+  color: var(--gmpro-primary);
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
