@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GMpro87devWRT Preview</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --gm-primary: #00d4ff;
+  --gm-primary-dim: rgba(0, 212, 255, 0.15);
+  --gm-secondary: #0f1923;
+  --gm-card-bg: #1a2634;
+  --gm-bg: #0d131b;
+  --gm-text: #e8edf2;
+  --gm-text-dim: #8892a4;
+  --gm-border: #2a3748;
+  --gm-accent: #ff3868;
+  --gm-success: #36d399;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--gm-bg);
+  color: var(--gm-text);
+  min-height: 100vh;
+}
+
+/* LOGIN PAGE */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0d131b, #0f1923);
+  padding: 20px;
+}
+
+.login-card {
+  background: var(--gm-card-bg);
+  border: 1px solid var(--gm-border);
+  border-radius: 12px;
+  padding: 40px;
+  width: 400px;
+  box-shadow: 0 8px 40px rgba(0, 212, 255, 0.05);
+}
+
+.login-card .logo-badge {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--gm-primary), #0099cc);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #fff;
+}
+
+.login-card h1 {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, var(--gm-primary), #80e5ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 4px;
+}
+
+.login-card p {
+  text-align: center;
+  color: var(--gm-text-dim);
+  font-size: 13px;
+  margin-bottom: 24px;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--gm-secondary);
+  border: 1px solid var(--gm-border);
+  border-radius: 6px;
+  color: var(--gm-text);
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.login-card input:focus {
+  border-color: var(--gm-primary);
+  box-shadow: 0 0 0 3px var(--gm-primary-dim);
+  outline: none;
+}
+
+.login-card button {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(135deg, var(--gm-primary), #0099cc);
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.login-card button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+}
+
+/* DASHBOARD LAYOUT */
+.dashboard {
+  display: none;
+  min-height: 100vh;
+  display: none;
+  grid-template-columns: 240px 1fr;
+}
+
+.dashboard.show {
+  display: grid;
+}
+
+/* SIDEBAR */
+.sidebar {
+  background: var(--gm-secondary);
+  border-right: 1px solid var(--gm-border);
+  padding: 0;
+}
+
+.sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid var(--gm-border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar-header .logo-icon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--gm-primary), #0099cc);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.sidebar-header span {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, var(--gm-primary), #80e5ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sidebar-nav {
+  padding: 8px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  color: var(--gm-text-dim);
+  font-size: 13px;
+  margin: 2px 0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-item:hover {
+  background: var(--gm-primary-dim);
+  color: var(--gm-primary);
+}
+
+.nav-item.active {
+  background: var(--gm-primary-dim);
+  color: var(--gm-primary);
+  border-left: 3px solid var(--gm-primary);
+}
+
+.nav-item .icon {
+  width: 18px;
+  text-align: center;
+}
+
+/* MAIN CONTENT */
+.main {
+  padding: 24px;
+}
+
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.header-bar h2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.header-bar .status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--gm-text-dim);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gm-success);
+}
+
+/* CARDS */
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.card {
+  background: var(--gm-card-bg);
+  border: 1px solid var(--gm-border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 14px 16px;
+  background: linear-gradient(135deg, #142130, #1a2634);
+  border-bottom: 1px solid var(--gm-border);
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-body {
+  padding: 16px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 13px;
+  border-bottom: 1px solid var(--gm-border);
+}
+
+.info-row:last-child { border-bottom: none; }
+.info-row .label { color: var(--gm-text-dim); }
+.info-row .value { color: var(--gm-text); }
+
+/* BADGES */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.badge-primary {
+  background: var(--gm-primary-dim);
+  color: var(--gm-primary);
+  border: 1px solid var(--gm-primary);
+}
+
+.badge-success {
+  background: rgba(54, 211, 153, 0.15);
+  color: var(--gm-success);
+  border: 1px solid var(--gm-success);
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+table th {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 2px solid var(--gm-border);
+  color: var(--gm-primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--gm-border);
+}
+
+table tr:hover td {
+  background: var(--gm-primary-dim);
+}
+
+/* FOOTER */
+.footer-bar {
+  border-top: 1px solid var(--gm-border);
+  padding: 16px 24px;
+  font-size: 12px;
+  color: var(--gm-text-dim);
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-bar a {
+  color: var(--gm-primary);
+  text-decoration: none;
+}
+
+/* TOGGLE BUTTON */
+.toggle-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 16px;
+  background: var(--gm-card-bg);
+  border: 1px solid var(--gm-border);
+  border-radius: 8px;
+  color: var(--gm-text);
+  cursor: pointer;
+  font-size: 13px;
+  z-index: 100;
+  transition: all 0.2s;
+}
+
+.toggle-btn:hover {
+  border-color: var(--gm-primary);
+  color: var(--gm-primary);
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN PAGE PREVIEW -->
+<div class="login-page" id="loginPage">
+  <div class="login-card">
+    <div class="logo-badge">GM</div>
+    <h1>GMpro87devWRT</h1>
+    <p>Custom Firmware &mdash; JCG Q20</p>
+    <input type="text" placeholder="Username" value="root">
+    <input type="password" placeholder="Password" value="••••••••">
+    <button>Login</button>
+  </div>
+</div>
+
+<!-- DASHBOARD PREVIEW -->
+<div class="dashboard show" id="dashboard">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-icon">GM</div>
+      <span>GMpro87devWRT</span>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-item active">
+        <span class="icon">📊</span> Status
+      </div>
+      <div class="nav-item">
+        <span class="icon">🌐</span> Network
+      </div>
+      <div class="nav-item">
+        <span class="icon">📡</span> WiFi
+      </div>
+      <div class="nav-item">
+        <span class="icon">🛡️</span> Firewall
+      </div>
+      <div class="nav-item">
+        <span class="icon">⚙️</span> System
+      </div>
+      <div class="nav-item">
+        <span class="icon">📦</span> Software
+      </div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+    <div class="header-bar">
+      <h2>Status / Overview</h2>
+      <div class="status">
+        <span class="status-dot"></span> Running
+        <span style="color:var(--gm-text-dim);margin-left:8px;">Uptime: 3d 14h 22m</span>
+      </div>
+    </div>
+
+    <!-- Info Cards -->
+    <div class="row">
+      <div class="card">
+        <div class="card-header">System <span class="badge badge-success">Online</span></div>
+        <div class="card-body">
+          <div class="info-row"><span class="label">Model</span><span class="value">JCG Q20</span></div>
+          <div class="info-row"><span class="label">Firmware</span><span class="value">GMpro87devWRT 24.10</span></div>
+          <div class="info-row"><span class="label">Kernel</span><span class="value">6.6.60</span></div>
+          <div class="info-row"><span class="label">Hostname</span><span class="value">GMpro87devWRT</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">Network</div>
+        <div class="card-body">
+          <div class="info-row"><span class="label">IPv4 WAN</span><span class="value">192.168.1.100</span></div>
+          <div class="info-row"><span class="label">IPv4 LAN</span><span class="value">192.168.1.1</span></div>
+          <div class="info-row"><span class="label">Gateway</span><span class="value">192.168.1.1</span></div>
+          <div class="info-row"><span class="label">DNS</span><span class="value">8.8.8.8</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">WiFi <span class="badge badge-success">2 Clients</span></div>
+        <div class="card-body">
+          <div class="info-row"><span class="label">2.4 GHz</span><span class="value">GMpro87dev-2G</span></div>
+          <div class="info-row"><span class="label">5 GHz</span><span class="value">GMpro87dev-5G</span></div>
+          <div class="info-row"><span class="label">Channel</span><span class="value">6 / 149</span></div>
+          <div class="info-row"><span class="label">Tx Power</span><span class="value">20 dBm</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Connections Table -->
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-header">Active Connections</div>
+      <div class="card-body" style="padding:0;">
+        <table>
+          <thead>
+            <tr><th>Interface</th><th>Source</th><th>Destination</th><th>Protocol</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>LAN</td><td>192.168.1.50</td><td>8.8.8.8:443</td><td>HTTPS</td><td><span class="badge badge-success">Active</span></td></tr>
+            <tr><td>WAN</td><td>192.168.1.100</td><td>1.1.1.1:53</td><td>DNS</td><td><span class="badge badge-success">Active</span></td></tr>
+            <tr><td>WiFi</td><td>192.168.1.42</td><td>203.0.113.5:80</td><td>HTTP</td><td><span class="badge badge-primary">Idle</span></td></tr>
+            <tr><td>LAN</td><td>192.168.1.15</td><td>142.250.80.46:443</td><td>HTTPS</td><td><span class="badge badge-success">Active</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toggle-btn" onclick="toggleView()">Switch to Login View</div>
+
+<script>
+let showingLogin = false;
+function toggleView() {
+  showingLogin = !showingLogin;
+  document.getElementById('loginPage').style.display = showingLogin ? 'flex' : 'none';
+  document.getElementById('dashboard').style.display = showingLogin ? 'none' : 'grid';
+  document.querySelector('.toggle-btn').textContent = showingLogin ? 'Switch to Dashboard' : 'Switch to Login View';
+}
+</script>
+
+</body>
+</html>
